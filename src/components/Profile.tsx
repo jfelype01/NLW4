@@ -7,7 +7,10 @@ export function Profile() {
 
             <div>
                 <strong>João Felype</strong>
-                <p>level 1</p>
+                
+                <p>
+                    <img src="icons/level.svg" alt="Level"/>
+                    level 1</p>
             </div>
         </div>
     );
