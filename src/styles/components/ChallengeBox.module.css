@@ -71,6 +71,7 @@
 
 .challengeActive main p {
     line-height: 1.5r;
+    margin: 0 1rem 0 1rem;
 }
 
 .challengeActive footer {
@@ -99,10 +100,12 @@
 }
 
 .challengeActive footer button.challengeFailedButton {
+    margin-left: 1.5rem;
     background: var(--red);
 }
 
 .challengeActive footer button.challengeSucededButton {
+    margin-right: 1.5rem;
     background: var(--green);
 }
 
