@@ -9,7 +9,7 @@ export function Countdown() {
         seconds,
         isActive, 
         hasFinished, 
-        resetCountdown, 
+        abandonedCicle, 
         startCountdown
     } = useContext(CountdownContext);
 
@@ -46,7 +46,7 @@ export function Countdown() {
                 <button 
                     type="button" 
                     className={`${styles.countdownButton} ${styles.countdownButtonActive}`}
-                    onClick={resetCountdown}
+                    onClick={abandonedCicle}
                     >
                     Abandonar um ciclo
                 </button>

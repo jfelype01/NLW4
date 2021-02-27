@@ -22,6 +22,8 @@
     font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.4;
+
+    padding: 1rem;
 }
 
 .challengeNotActive p {
@@ -111,4 +113,18 @@
 
 .challengeActive footer button:hover {
     filter: brightness(0.9)
+}
+
+@media (max-width: 600px) {
+    .challengeBoxContainer {
+        width: 40vh;
+        margin-right: 1rem;
+        margin-top: 2rem;
+    }
+}
+
+@media (min-width: 600px) {
+    .challengeBoxContainer {
+        margin-top: 2rem
+    }
 }

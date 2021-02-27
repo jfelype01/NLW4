@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react"
+import { ConfirmCancelation } from "../components/ConfirmCancelation";
 import { ChallengesContext } from "./ChallengesContext";
 
 interface CountdownContextData {
@@ -7,7 +8,10 @@ interface CountdownContextData {
     hasFinished: boolean;
     isActive: boolean;
     startCountdown: () => void;
-    resetCountdown: () => void
+    resetCountdown: () => void;
+    confirmedCancellation: () => void;
+    abandonedCicle: () => void;
+    continueCicle: () => void
 }
 
 interface CountdownProviderProps {
@@ -21,12 +25,14 @@ export const CountdownContext = createContext({} as CountdownContextData)
 export function CountdownProvider({children}: CountdownProviderProps) {
     const { startNewChallenge } = useContext(ChallengesContext);
 
-    const [time, setTime] = useState(25*60);
+    const [time, setTime] = useState(0.05*60);
     const [isActive, setIsActive] = useState(false);
     const [hasFinished, setHasFinished] = useState(false);
+    const [modalConfirmCancellation, setModalConfirmCancellation] = useState(false);
 
     const minutes = Math.floor(time/60);
     const seconds = time % 60;
+
 
     function startCountdown() {
         setIsActive(true);
@@ -36,7 +42,22 @@ export function CountdownProvider({children}: CountdownProviderProps) {
         clearTimeout(countdownTimeout);
         setHasFinished(false);
         setIsActive(false);
-        setTime(25*60);
+        setTime(0.05*60);
+    }
+
+    function confirmedCancellation() {
+        resetCountdown();
+        setModalConfirmCancellation(false);
+    }
+
+    function abandonedCicle() {
+        setModalConfirmCancellation(true)
+        setIsActive(false)
+    }
+
+    function continueCicle() {
+        setModalConfirmCancellation(false);
+        setIsActive(true)
     }
 
     useEffect(()=> {
@@ -60,10 +81,14 @@ export function CountdownProvider({children}: CountdownProviderProps) {
             isActive,
             hasFinished,
             startCountdown,
-            resetCountdown
+            resetCountdown,
+            confirmedCancellation,
+            abandonedCicle,
+            continueCicle
         }}
     >
             {children}
+            {modalConfirmCancellation && <ConfirmCancelation />}
         </CountdownContext.Provider>
     )
 }
