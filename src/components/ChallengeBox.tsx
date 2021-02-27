@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { ChallengesContext } from '../context/ChallengesContext'
-import { CountdownContext } from '../context/countdownContext';
+import { CountdownContext } from '../context/CountdownContext';
 import styles from '../styles/components/ChallengeBox.module.css'
 
 export function ChallengeBox() {
